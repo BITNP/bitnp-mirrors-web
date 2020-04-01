@@ -17,7 +17,7 @@
 {{ block "head-extra" . }}{{ end }}</head>
 {{- end -}}
 {{- block "body" . }}
-<body class="d-flex flex-column">
+<body id="top" class="d-flex flex-column">
     <header class="navbar navbar-expand navbar-light bg-light border-bottom shadow-sm pb-0">
 		<div class="container position-relative"><!-- relative for sr-popup -->
             {{ block "header-sr" . }}<a class="sr-only sr-only-focusable sr-popup" href="#content">跳转到主要内容</a>{{ end }}
