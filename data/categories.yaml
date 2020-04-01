@@ -1,0 +1,19 @@
+# Order matters on index
+- key: featured
+  name: 置顶项目
+- key: general
+  name: 通用软件
+- key: os
+  name: 操作系统
+- key: packages
+  name: 软件包
+- key: language
+  name: 语言资源
+- key: devtool
+  name: 开发工具
+- key: data
+  name: 数据处理
+- key: environment
+  name: 运行环境
+- key: oncampus
+  name: 校内资源

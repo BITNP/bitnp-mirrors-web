@@ -1,0 +1,53 @@
+{{ block "head" . -}}
+<!DOCTYPE html>
+<html lang="{{ $.Site.LanguageCode }}" class="h-100">
+<head>
+    <meta charset="utf-8">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Params.briefTitle }}{{ end }}</title>
+    <meta name="description" content="{{ default "" .Summary }}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href="{{ relURL "/static/favicon.png" }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }} &raquo; 站点通知" href="{{ absURL "/news/index.xml" }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }} &raquo; 帮助" href="{{ absURL "/help/index.xml" }}">
+
+    <link rel="stylesheet" href="{{ relURL "/static/style.css" }}">
+    <script src="{{ relURL "/static/common.js" }}" defer></script>
+{{ block "head-extra" . }}{{ end }}</head>
+{{- end -}}
+{{- block "body" . }}
+<body class="d-flex flex-column">
+    <header class="navbar navbar-expand navbar-light bg-light border-bottom shadow-sm pb-0">
+		<div class="container position-relative"><!-- relative for sr-popup -->
+            {{ block "header-sr" . }}<a class="sr-only sr-only-focusable sr-popup" href="#content">跳转到主要内容</a>{{ end }}
+{{ partial "header.html" . }}
+        </div>
+    </header>
+
+	<main role="main" id="content" class="flex-shrink-0 my-4{{ block "main-class" . }}{{ end }}">
+{{- block "main" . }}
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md">
+                    {{ block "content" . }}{{ end }}
+                </div>
+                <aside class="col-12 col-md-4 col-lg-3">
+                    <h4><a href="{{ relURL "/news/" }}">&#x1F4F0; 站点通知</a></h4>
+                    <ul class="pl-3">
+                    {{- range first 3 (where .Site.RegularPages "Section" "news") }}
+                        <li><a href="{{ .RelPermalink }}"><time datetime="{{ .Date.Format "2006-01-02T15:04:05-0700" }}" title="{{ .Date.Format "2006-01-02T15:04:05-0700" }}">{{ .Date.Format "01-02" }}</time> {{ .Title }}</a></li>
+                    {{- else }}
+                        <li>暂无通知。</li>
+                    {{ end }}
+                    </ul>
+                    {{- block "sidebar-extra" . }}
+{{ partialCached "sidebar-info.html" . }}{{ end }}
+                </aside>
+            </div>
+        </div>{{ end }}
+    </main>
+{{ partialCached "footer.html" . }}
+</body>
+</html>
+{{ end }}

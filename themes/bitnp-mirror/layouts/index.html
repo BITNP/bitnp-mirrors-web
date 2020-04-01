@@ -1,0 +1,67 @@
+{{ define "head-extra" }}    <script src="{{ relURL "/static/filter.js" }}" defer></script>
+{{ end }}
+{{ define "main-class" }} page-index{{ end }}
+{{ define "header-sr" }}
+			<a class="sr-only sr-only-focusable sr-popup" href="#content">跳转到镜像列表</a>
+			<a class="sr-only sr-only-focusable sr-popup" href="#aside-categories">跳转到镜像分类</a>
+{{ end }}
+{{ define "content" }}
+					{{- .Content }}
+					<div class="input-group mb-3" id="filter-list-group" data-status-json="{{ relURL $.Site.Params.statusJSON  }}">
+						<div class="input-group-prepend">
+						<label for="filter-list" class="input-group-text">&#x1F50D; <span class="sr-only">筛选镜像项目</span></label>
+						</div>
+						<input type="search" class="form-control" id="filter-list" list="filter-datalist"
+						placeholder="筛选镜像项目 (F) 如 #os ubuntu" accesskey="f">
+					</div>
+					<datalist id="filter-datalist">
+{{- range $cat := $.Site.Data.categories }}
+{{- $RegularPages := index $.Site.Taxonomies.categories $cat.key }}
+{{ if len $RegularPages }}
+						<option value="#{{ $cat.key }}">
+{{- end }}
+{{- end }}
+					</datalist>
+					<noscript>
+						<style>#filter-list-group {display: none;}</style>
+					</noscript>
+
+{{- range $cat := $.Site.Data.categories }}
+{{- $RegularPages := index $.Site.Taxonomies.categories $cat.key }}
+{{ if len $RegularPages }}
+					<h4 id="{{ $cat.key }}" class="mirrors-title mb-3"><a href="#{{ $cat.key }}" class="text-body text-decoration-none">{{ $cat.name }} <small class="text-muted">#{{ $cat.key }}</small></a></h4>
+					<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
+{{- range $RegularPages }}
+						<div class="col mb-3 px-2 mirror-col" data-slug="{{ .Slug }}"><div class="card">
+							<div class="card-body">
+								<div class="row mb-1">
+									<h5 class="card-title col position-static pr-0">
+										<a href="{{ .Slug }}/" class="stretched-link">{{ .Title }}</a>
+										{{ if .Params.is_new }}<span class="badge badge-primary align-top">新</span>{{ end }}
+										<a class="badge badge-warning badge-sync-status raised-link-2 align-top d-none" href="{{ relURL "/status/" }}#{{ .Slug }}">同步异常</a>
+									</h5>
+									{{ if .Params.help_available }}<div class="col-auto mt-n1"><a href="{{ .RelPermalink }}" class="btn btn-outline-info btn-sm raised-link-2"><span class="sr-only">{{ .Title }}</span> 帮助</a></div>{{ end }}
+								</div>
+								<p class="card-text text-muted">{{ .Summary }}</p>
+							</div>
+						</div></div>
+{{- end }}
+					</div>
+{{- end }}{{/* len */}}
+{{- end }}
+
+					<p id="filter-notfound" class="text-center"><em>找不到镜像，可<a href="{{ $.Site.Params.newMirrorLink }}">在 GitHub 提出镜像请求</a></em></p>
+{{ end }}
+{{ define "sidebar-extra" }}
+					<div id="aside-categories">
+						<h4>&#x1F4C1; 镜像分类</h4>
+						<ul class="pl-3">
+{{- range $cat := $.Site.Data.categories }}
+{{- $RegularPages := index $.Site.Taxonomies.categories $cat.key }}
+{{ if len $RegularPages }}
+							<li class="aside-mirrors-title"><a href="#{{ $cat.key }}">{{ $cat.name }} <small class="text-muted">#{{ $cat.key }}</small></a></li>
+{{- end }}
+{{- end }}
+						</ul>
+					</div>
+{{ partialCached "sidebar-info.html" . }}{{ end }}

@@ -1,0 +1,10 @@
+{{ define "main-class" }} page-news{{ end }}
+{{ define "content" }}
+                    {{ range (.Paginator 10).Pages }}
+                    <h1 class="h3"><a href="{{ .Permalink }}">{{ .Params.title | title }}</a></h1>
+                    <p><em>发布于 <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" title="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006-01-02 15:04 MST" }}</time></em></p>
+                    {{ .Content }}
+                    {{ end }}
+
+                    {{ template "_internal/pagination.html" . }}
+{{ end }}

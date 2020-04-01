@@ -1,0 +1,205 @@
+/* Custom Varables */
+$enable-transitions: true;
+$enable-validation-icons: false;
+$font-family-sans-serif:
+    // in TUNA's list
+    "Lato",
+    // Windows
+    "Segoe UI",
+    // Android
+    "Roboto",
+    // Safari for OS X and iOS (San Francisco)
+    -apple-system,
+    // Chrome < 56 for OS X (San Francisco)
+    BlinkMacSystemFont,
+    "Source Han Sans SC", "Source Han Sans CN",
+    "Noto Sans CJK SC", "Noto Sans CJK CN",
+    "WenQuanYi Zen Hei", "WenQuanYi Micro Hei",
+    "Microsoft Yahei",
+    // Basic web fallback
+    "Helvetica Neue", Arial, sans-serif,
+    // Emoji fonts
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+$primary: #D87319; /* NP */
+
+/* Dark variable below */
+
+/* Import */
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+/* @import "~bootstrap/scss/images"; */
+@import "~bootstrap/scss/code";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+/*@import "~bootstrap/scss/transitions";*/
+@import "~bootstrap/scss/dropdown";
+/*@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/custom-forms";*/
+@import "~bootstrap/scss/input-group";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/card";
+/*@import "~bootstrap/scss/breadcrumb";*/
+@import "~bootstrap/scss/pagination";
+@import "~bootstrap/scss/badge";
+/*@import "~bootstrap/scss/jumbotron";*/
+@import "~bootstrap/scss/alert";
+/*@import "~bootstrap/scss/progress";
+@import "~bootstrap/scss/media";
+@import "~bootstrap/scss/list-group";
+@import "~bootstrap/scss/close";
+@import "~bootstrap/scss/toasts";
+@import "~bootstrap/scss/modal";*/
+/*@import "~bootstrap/scss/tooltip";
+@import "~bootstrap/scss/popover";*/
+/*@import "~bootstrap/scss/carousel";*/
+/*@import "~bootstrap/scss/spinners";*/
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/print";
+
+/* Style Override */
+@mixin dark-mode {
+    @media (prefers-color-scheme: dark) { @content; }
+}
+$body-color-dark: $body-bg;
+$body-bg-dark: $body-color;
+$light-dark: theme-color-level("light", 0);
+
+body {
+    min-height: 100%;
+    /* transition: background-color 0.5s ease, color 0.5s ease; */
+
+    @include dark-mode {
+        background-color: $body-bg-dark;
+        color: $body-color-dark;
+    }
+}
+
+@include dark-mode {
+    .table {
+        color: $body-color-dark;
+    }
+    .table-hover tbody tr:hover {
+        color: $body-color-dark;
+        background-color: $gray-600;
+    }
+    .table-warning, .table-warning>th, .table-warning>td,
+    .table-success, .table-success>th, .table-success>td,
+    .table-info, .table-info>th, .table-info>td,
+    .table-danger, .table-danger>th, .table-danger>td{
+        color: $body-bg-dark;
+    }
+    .text-body {
+        color: $body-color-dark !important;
+    }
+    caption {
+        color: $gray-500;
+    }
+    .text-muted {
+        color: $gray-500 !important;
+    }
+    .card{
+        // background-color: $light-dark;
+        background-color: $dark;
+        border: 1px solid rgba($body-color-dark, 0.125);
+    }
+    .border-bottom {
+        border-bottom: 1px solid $gray-600 !important;
+    }
+    /* Navbar weird border fix */
+    .navbar-light.border-bottom>.container {
+        margin-bottom: -0.5px;
+    }
+    .bg-light.navbar-light {
+        background-color: $light-dark !important;
+    }
+    .bg-light.navbar-light .text-muted /*, .card .text-muted*/ {
+        color: $gray-600 !important;
+    }
+}
+
+.navbar-nav {
+    overflow-x: auto;
+    width: 100%;
+    white-space: nowrap;
+}
+
+li.nav-item {
+    display: block
+} /* make items use up all width - do not wrap */
+
+/*.bg-dark {color: #d3d9df;}*/ /* darken text color */
+/*.bg-dark a {color: #66b0ff;}*/ /* fix contrast */
+
+.bg-dark {
+    color: theme-color-level("light", 1);
+}
+.bg-dark a {
+    color: theme-color-level("primary", -3);
+}
+.nav-link {
+    margin-bottom: 4px;
+    text-align: center;
+}
+
+/* .navbar-light .navbar-nav .nav-link {} */
+
+.navbar-light .navbar-nav .show>.nav-link,
+.navbar-light .navbar-nav .active>.nav-link,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .nav-link.active {
+    color: theme-color("primary");
+    border-bottom: 4px solid;
+    margin-bottom: 0;
+}
+
+aside h4, aside h4 a, aside h4 a:hover {
+    /*color: #a13f0b;*/ /* BIT */
+    color: $body-color;
+    text-decoration: none;
+
+    @include dark-mode {
+        color: $body-color-dark;
+    }
+}
+
+.sr-popup:focus {
+    display: block;
+    position: absolute;
+    color: theme-color("light");
+    background: theme-color("dark");
+    font-size: 1em;
+    left: 0.5rem;
+    top: 0.5rem;
+    padding: 0.8rem;
+    z-index: 100;
+}
+
+.sr-popup:hover {
+    text-decoration: none;
+    color: theme-color("light");
+    background: theme-color("dark");
+}
+
+/* word break, thanks @Panda */
+.mail-decoder {
+    word-break: break-all;
+}
+
+/* w/ stretched-link*/
+.raised-link-2 {
+    position: relative;
+    z-index: 2;
+}
+
+.table-sm th, .table-sm td {
+    padding: .2rem .5rem;
+}

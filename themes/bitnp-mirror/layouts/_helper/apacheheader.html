@@ -1,0 +1,11 @@
+{{ define "head" }}{{ if .Params.demo }}<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+ <head><!-- TODO: utf8 --><meta charset="utf-8">
+  <title>{{ .Title }}</title>
+ </head>
+ <body>{{ end }}{{ end }}
+
+{{ define "content" }}
+{{- .Content -}}
+{{- if .Params.demo }}{{ partial "apachefooter.html" . }}{{ end -}}
+{{ end }}

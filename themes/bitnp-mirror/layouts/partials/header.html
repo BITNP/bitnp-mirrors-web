@@ -1,0 +1,51 @@
+
+			<div class="d-flex flex-column align-items-start w-100">
+				<div class="d-flex justify-content-between w-100">
+					<a class="navbar-brand mb-3" href="{{ relURL "/" }}">
+						<img class="logo" src="{{ relURL "/static/favicon.png" }}" alt="BITNP" height="32" width="32">
+						<span class="align-middle d-none d-sm-inline">{{ .Site.Title }}</span>
+						<span class="align-middle d-sm-none">{{ .Site.Params.briefTitle }}</span>
+                    </a>
+					<a class="d-none d-sm-block p-2 text-muted text-right" href="//mirror.bit.edu.cn/" tabindex="-1">mirror.bit.edu.cn</a>
+				</div>
+				{{ partialCached "header-alerts.html" . }}
+				<ul class="navbar-nav" role="navigation">
+                    {{ $isIndex := or (eq .Page.RelPermalink (relURL "/")) (eq .Page.Section "_helper") -}}
+					<li class="nav-item{{ if $isIndex }} active{{ end }}">
+                        <a class="nav-link" href="{{ relURL "/" }}">镜像目录{{ if $isIndex }} <span class="sr-only">(当前)</span>{{ end }}</a>
+                    </li>
+                    {{- $currentPage := . -}}
+                    {{ range .Site.Menus.main }}
+                    {{- $is := $currentPage.IsMenuCurrent "main" . }}
+					{{- $has := $currentPage.HasMenuCurrent "main" . }}
+                    {{- $inside := hasPrefix $currentPage.RelPermalink .URL }}
+                    {{- $status_inside_news := and (eq .URL (relURL "/status/")) (hasPrefix $currentPage.RelPermalink (relURL "/news/")) }}
+                    {{- if and false .HasChildren }}{{/* Suppressed */}}
+                    <li class="{{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}">
+                        <a href="#">
+                            {{ .Pre }}
+                            <span>{{ .Name }}</span>
+                        </a>
+                    </li>
+                    <ul class="sub-menu">
+                        {{ range .Children }}
+                            <li class="{{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
+                                <a href="{{ .URL }}">{{ .Name }}</a>
+                            </li>
+                        {{ end }}
+                    </ul>
+                    {{ else }}
+                    <li class="nav-item{{ if or $is $has $inside $status_inside_news }} active{{ end }}">
+                        <a class="nav-link" href="{{ .URL }}">
+                            {{ .Pre }} <span>{{ .Name }}</span>{{ if or $is $has $inside $status_inside_news }} <span class="sr-only">(当前)</span>{{ end }}
+                        </a>
+                    </li>
+                    {{- end -}}
+                    {{ end }}
+                    <li class="nav-item flex-grow-1">
+                        <a class="nav-link d-inline-block float-right" href="//www.bitnp.net/">
+                            <span>网协主页</span>
+                        </a>
+                    </li>
+				</ul>
+			</div>

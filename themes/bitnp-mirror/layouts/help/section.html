@@ -1,0 +1,15 @@
+{{ define "main-class" }} page-help{{ end }}
+{{ define "content" }}
+                    <h3>&#x1F4A1; 帮助从<ruby>阿到做 <rp class="text-muted">(</rp>
+                        <rt class="text-muted">A - Z</rt>
+                        <rp class="text-muted">)</rp></ruby></h3>
+                    <ul>
+                        {{ range where .RegularPages "Params.help_available" true }}<li><a href="{{ .Permalink }}">{{ .Params.title | title }}</a></li>{{ end }}
+                    </ul>
+                    <hr>
+                    <h3>&#x1F44B; 未完成的<del>旅程</del></h3>
+                    <p>想帮助我们撰写缺失的帮助？请<a href="{{ $.Site.Params.gitLink }}blob/master/content/help/">在 GitHub 上提交编辑</a></p>
+                    <ul class="nav nav-pills">
+                        {{ range where .RegularPages "Params.help_available" false }}<li class="nav-item"><a href="{{ $.Site.Params.gitLink }}blob/master/content/{{ .File.Path }}" class="nav-link">{{ .Params.title | title }}</a></li>{{ end }}
+                    </ul>
+{{ end }}

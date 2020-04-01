@@ -1,0 +1,14 @@
+{{ define "main" }}
+        <div class="container text-center">
+            <h2 class="mb-3"><ruby>
+                资源未找到
+                <rp class="text-muted">(</rp>
+                <rt class="text-muted">HTTP 404 Not Found</rt>
+                <rp class="text-muted">)</rp>
+            </ruby></h2>
+            <p>如需反馈，请<a href="{{ $.Site.Params.feedbackLink }}">通过 GitHub 提交</a></p>
+            <p class="mt-5">
+                <a href="javascript:history.back()" class="btn btn-outline-primary mr-5">&#x2190; 返回前页</a>
+                <a href="{{ relURL "/" }}" class="btn btn-outline-primary">镜像目录 &#x2192;</a>
+            </p>
+        </div>{{ end }}

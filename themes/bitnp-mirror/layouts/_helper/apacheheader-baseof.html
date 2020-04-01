@@ -1,0 +1,22 @@
+{{ block "head" . }}{{ end }}
+    <link rel="stylesheet" href="{{ relURL "/static/style.css" }}">
+    <script src="{{ relURL "/static/common.js" }}"></script>
+    <header class="navbar navbar-expand navbar-light bg-light border-bottom shadow-sm pb-0">
+		<div class="container position-relative"><!-- relative for sr-popup -->
+			<a class="sr-only sr-only-focusable sr-popup" href="#content">跳转到文件夹列表</a>
+{{ partial "header.html" . }}
+        </div>
+    </header>
+    <main role="main" id="content" class="flex-shrink-0 mt-4 mb-n3 page-list">
+    <div class="container">
+<h1 class="h3 mb-3"></h1>
+<script>
+document.getElementsByTagName('h1')[0].innerHTML = document.title;
+document.body.className="d-flex flex-column";
+
+var m = document.createElement('meta');
+m.name = "viewport";
+m.content = "width=device-width, initial-scale=1.0";
+document.head.appendChild(m);
+</script>
+{{ block "content" . }}{{- .Content -}}{{ end }}
