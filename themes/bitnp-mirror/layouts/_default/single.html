@@ -9,5 +9,6 @@
                     <p>
                         <a href="{{ $.Site.Params.gitLink }}blob/master/content/{{ .File.Path }}" class="btn btn-outline-primary btn-sm">&#x270F;&#xFE0F; 在 GitHub 上编辑本页面</a>
                         {{ if .Date }} 发布于 <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" title="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006-01-02 15:04 MST" }}</time>{{ end }}
+                        {{ if .Params.author }}&#x1F464; {{ .Params.author }}{{ end }}
                     </p>
 {{ end }}

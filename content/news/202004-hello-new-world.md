@@ -4,6 +4,7 @@ date: 2020-04-01T00:00:00+08:00
 alert: ~
 draft: false
 summary: 更帅的网页、更成熟的同步系统，新版镜像愿为你提供更好的服务
+author: Phy
 ---
 
 北京理工大学开源软件镜像服务 [mirror.bit.edu.cn](//mirror.bit.edu.cn/) 的升级版上线啦！新版本亮点包括：

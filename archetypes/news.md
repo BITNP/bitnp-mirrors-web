@@ -4,5 +4,6 @@ date: {{ .Date }}
 draft: false
 alert: ~
 summary: ~
+author: ~
 ---
 
