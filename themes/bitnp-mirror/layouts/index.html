@@ -55,6 +55,12 @@
 
 					<p id="filter-notfound" class="text-center"><em>找不到镜像，可<a href="{{ $.Site.Params.newMirrorLink }}">在 GitHub 提出镜像请求</a></em></p>
 					</div>
+
+					<div id="keyboard-help" class="fixed-bottom w-100 d-none" aria-live="polite" role="alert">
+						<div class="container alert alert-info">
+							<code>?</code> 本页键盘快捷键提示：<code>F</code> 聚焦到筛选框；<code>#</code> 快速按分类筛选（按 <code>Esc</code> 或点击提示<a href="javascript:void(0)" id="keyboard-help-close">关闭本快捷键提示</a>）
+						</div>
+					</div>
 {{ end }}{{/* define */}}
 {{ define "sidebar-extra" }}
 					<div id="aside-categories">

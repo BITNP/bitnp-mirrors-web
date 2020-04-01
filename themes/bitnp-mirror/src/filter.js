@@ -3,31 +3,73 @@ window.addEventListener('load', function(){
         // press f to find like GitHub
         // Thanks to USTC
         var filterInput = document.getElementById('filter-list');
+        var keyboardHelpDiv = document.getElementById('keyboard-help');
+        var keyboardHelpClose = document.getElementById('keyboard-help-close');
         var preventKeypressFlag = 0;
+        var keypressCounter = 0;
+        keyboardHelpDiv.addEventListener('keydown', function(event) {
+            if (event.keyCode == 27) {
+                // Esc
+                keyboardHelpDiv.classList.add('d-none');
+                localStorage.keyboardHelpIndex = 1;
+            }
+        });
+        keyboardHelpDiv.addEventListener('click', function(event) {
+            keyboardHelpDiv.classList.add('d-none');
+            localStorage.keyboardHelpIndex = 1;
+        });
         document.body.addEventListener('keydown', function(event) {
             if (preventKeypressFlag){
                 event.preventDefault();
                 return false;
             }
-            if (document.activeElement.tagName === 'INPUT' || event.ctrlKey || event.altKey) {
+            if (document.activeElement.tagName === 'INPUT') {
                 return;
             }
-            if (event.keyCode == 70 || (event.keyCode == 51 && event.shiftKey)) {
-                if (filterInput.scrollIntoViewIfNeeded)
-                    filterInput.scrollIntoViewIfNeeded();
-                else if (filterInput.scrollIntoView)
-                    filterInput.scrollIntoView();
-                filterInput.focus();
-                preventKeypressFlag = 1;
-                document.addEventListener('keyup', removeKeypressFlag);
+            if (keypressCounter >= 0){
+                keypressCounter++;
+                // threshold to trigger keyboard help
+                if (keypressCounter > 3) {
+                    keypressCounter = -1;
+                    if (!localStorage.keyboardHelpIndex) {
+                        keyboardHelpDiv.classList.remove('d-none');
+                        // don't focus, or we cannot (or I don't want to) revert focus state
+                    }
+                }
             }
-            if (event.keyCode == 70) {
-                event.preventDefault();
-            }
-            if (event.keyCode == 51 && event.shiftKey) {
-                filterInput.value = '';
-                // filterInputEvent.call(filterInput);
-                // we will let default behavior type # in input, and input event triggered there
+            if (event.ctrlKey || event.altKey){
+                // NOP
+            }else{
+                if (!keyboardHelpDiv.classList.contains('d-none') && event.keyCode == 27) {
+                    // Esc keyboard help
+                    keyboardHelpDiv.classList.add('d-none');
+                    localStorage.keyboardHelpIndex = 1;
+                }
+                if (event.keyCode == 191 && event.shiftKey){
+                    // show keyboard help
+                    keyboardHelpDiv.classList.remove('d-none');
+                    keyboardHelpClose.focus();
+                }
+                if (event.keyCode == 70 || (event.keyCode == 51 && event.shiftKey)) {
+                    keypressCounter = -2;
+                    if (filterInput.scrollIntoViewIfNeeded)
+                        filterInput.scrollIntoViewIfNeeded();
+                    else if (filterInput.scrollIntoView)
+                        filterInput.scrollIntoView();
+                    filterInput.focus();
+                    preventKeypressFlag = 1;
+                    document.addEventListener('keyup', removeKeypressFlag);
+
+                    if (event.keyCode == 70) {
+                        event.preventDefault();
+                    }
+
+                    if (event.keyCode == 51 && event.shiftKey) {
+                        filterInput.value = '';
+                        // filterInputEvent.call(filterInput);
+                        // we will let default behavior type # in input, and input event triggered there
+                    }
+                }
             }
         });
 
