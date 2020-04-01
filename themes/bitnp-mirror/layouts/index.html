@@ -17,7 +17,7 @@
 					<datalist id="filter-datalist">
 {{- range $cat := $.Site.Data.categories }}
 {{- $RegularPages := index $.Site.Taxonomies.categories $cat.key }}
-{{ if len $RegularPages }}
+{{- if len $RegularPages }}
 						<option value="#{{ $cat.key }}">
 {{- end }}
 {{- end }}
@@ -29,9 +29,12 @@
 					<div id="mirrors-list">
 {{- range $cat := $.Site.Data.categories }}
 {{- $RegularPages := index $.Site.Taxonomies.categories $cat.key }}
-{{ if len $RegularPages }}
+{{- if len $RegularPages }}
 					<div id="{{ $cat.key }}">
-						<h4 class="mirrors-title py-2 mx-n2 px-2 sticky-top bg-body"><a href="#{{ $cat.key }}" class="text-body text-decoration-none">{{ $cat.name }} <small class="text-muted">#{{ $cat.key }}</small></a></h4>
+						<h4 class="mirrors-title py-2 mx-n2 px-2 sticky-top bg-body" style="display: flex;">{{/* the style attribute makes sure it does not have important on it, and thus d-none works */}}
+							<a href="#{{ $cat.key }}" class="text-body text-decoration-none flex-fill">{{ $cat.name }} <small class="text-muted">#{{ $cat.key }}</small></a>
+							<a href="#" class="text-body text-decoration-none pr-1">&#x1F51D;</a>
+						</h4>
 						<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
 {{- range $RegularPages }}
 							<div class="col mb-3 px-2 mirror-col" data-slug="{{ .Slug }}"><div class="card h-100">
@@ -49,7 +52,7 @@
 							</div></div>
 {{- end }}
 						</div>
-						</div>{{/* end of #mirrors-list*/}}
+					</div>{{/* end of #mirrors-list*/}}
 {{- end }}{{/* len */}}
 {{- end }}
 
