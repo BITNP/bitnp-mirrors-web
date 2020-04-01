@@ -114,16 +114,17 @@ body {
     .border-bottom {
         border-bottom: 1px solid $gray-600 !important;
     }
-    /* Navbar weird border fix */
-    .navbar-light.border-bottom>.container {
-        margin-bottom: -0.5px;
-    }
     .bg-light.navbar-light {
         background-color: $light-dark !important;
     }
     .bg-light.navbar-light .text-muted /*, .card .text-muted*/ {
         color: $gray-600 !important;
     }
+}
+
+/* Navbar weird border fix */
+.navbar-light.border-bottom>.container {
+    margin-bottom: -0.5px;
 }
 
 .navbar-nav {

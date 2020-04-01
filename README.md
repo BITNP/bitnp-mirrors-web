@@ -12,3 +12,11 @@
 5. 如果还未能撰写帮助或帮助还不能发布，请设置 help_available 为 `false`（`---` 下方可留空），否则请设置为 `true`
 6. date 项需设置为发布日期或留空，如果 date 比 Hugo 生成站点的时间晚，则项目不会被生成。此外你也可以使用 `draft: true` 项控制生成状态
 7. 首页和帮助显示的为 help 中的有效项目，而状态页显示的是同步软件中存在的项目
+
+## 编译主题 Javascript
+
+```console
+$ cd themes/bitnp-mirror/src
+$ npm install
+$ npx webpack
+```
