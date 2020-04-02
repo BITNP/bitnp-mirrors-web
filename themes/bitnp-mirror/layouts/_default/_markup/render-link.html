@@ -1,0 +1,5 @@
+{{ if and (hasPrefix .Destination "mailto:") (eq .Text "") -}}{{/* usage: [](mailto:email@example.org) */}}
+<a href="#"{{ with .Title}} title="{{ . }}"{{ end }} class="mail-decoder">{{ replace (replace (replace .Destination "mailto:" "") "@" " at ") "." " dot " | safeHTML }}</a>
+{{- else -}}
+<a href="{{ .Destination | safeURL }}"{{ with .Title}} title="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</a>
+{{- end }}
