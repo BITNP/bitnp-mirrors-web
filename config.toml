@@ -10,7 +10,7 @@ briefTitle = "北理工开源软件镜像"
 feedbackLink = "https://github.com/bitnp/issues/"
 newMirrorLink = "https://github.com/BITNP/issues/issues/new?labels=enhancement%2C+mirror.bitnp.net&template=-mirror-repo---------.md&title=[mirror%2Frepo]"
 gitLink = "https://github.com/bitnp/bitnp-mirrors-web/"
-statusJSON = "/status/job_status_tuna.json"
+statusJSON = "/status/job_status.json"
 
 [permalinks]
 help = "/help/:filename/"
