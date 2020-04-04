@@ -34,7 +34,7 @@
                 <td><a v-bind:href="'../' + item.name + '/'">{{ item.name }}</a></td>
                 <td class="text-nowrap" v-html="$options.filters.statusLabel(item)"></td>
                 <td class="text-center"><time v-bind:datetime="item.last_update" v-bind:title="item.last_update">
-                  {{ item.last_update_ts | dateFromTS | dateShort }}
+                  {{ item.last_update_ts | dateFromTS | dateShort | default("未同步") }}
                 </time></td>
                 <!--<td><time v-bind:datetime="item.last_ended" v-bind:title="item.last_ended">
                   {{ item.last_ended_ts | dateFromTS | timeSince(item.last_update_ts*1000, null, true) }}
@@ -79,6 +79,7 @@ var statusLabel = {
     "none": "&#x23F8;&#xFE0F; 未同步",
     "failed": "&#x274C; 同步失败",
     "syncing": "&#x1F504; 同步于 %updaterel%",
+    "_syncing": "&#x1F504; 正在同步",
     "pre-syncing": "&#x23F3; 正在预同步",
     "paused": "&#x23F8;&#xFE0F; 同步暂停",
     "disabled": "&#x23F8;&#xFE0F; 同步禁用",
@@ -142,9 +143,14 @@ export default {
     },
     statusLabel: function(item){
       var last_update = this.dateFromTS(item.last_update_ts);
+      var time_since = this.timeSince(last_update, null, '前');
+
+      if (!time_since && item.status == 'syncing')
+        return statusLabel['_syncing'];
+
       return (statusLabel[item.status] || item.status)
         .replace('%updaterel%',
-          this.timeSince(last_update, null, '前'))
+          )
         .replace('%oldemoji%',
           (last_update && (new Date().getTime() - last_update.getTime()) > 3600000 * 24) ? '&#x1F570;&#xFE0F; ': ''
         );
