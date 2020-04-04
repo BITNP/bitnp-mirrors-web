@@ -146,7 +146,7 @@ export default {
         .replace('%updaterel%',
           this.timeSince(last_update, null, '前'))
         .replace('%oldemoji%',
-          (new Date().getTime() - last_update.getTime()) > 3600000 * 24 ? '&#x1F570;&#xFE0F; ': ''
+          (last_update && (new Date().getTime() - last_update.getTime()) > 3600000 * 24) ? '&#x1F570;&#xFE0F; ': ''
         );
     },
     dateFromTS: function(ts){
