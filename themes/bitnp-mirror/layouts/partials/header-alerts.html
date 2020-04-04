@@ -2,7 +2,7 @@
                 <div class="alert alert-{{ .Params.alert }}" role="alert" style="max-width: 36rem;">
                     &#x1F4E2;
                     {{- if .Truncated }} <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                    {{ else }} {{ .Summary }} <a href="{{ .RelPermalink }}">#</a>{{ end -}}
+                    {{ else }} {{ .Summary }} <a href="{{ .RelPermalink }}" title="{{ .Title }}">#</a>{{ end -}}
                     <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" title="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
                         ({{ .Date.Format "01-02 15:04" }})
                     </time>
