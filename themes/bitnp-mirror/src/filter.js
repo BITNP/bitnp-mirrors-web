@@ -86,7 +86,7 @@ window.addEventListener('load', function(){
             // fetch status
             var statusJSON = document.getElementById('filter-list-group').dataset.statusJson;
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', statusJSON+'?refresh='+encodeURIComponent(+new Date()), true);
+            xhr.open('GET', statusJSON, true); // +'?refresh='+encodeURIComponent(+new Date())
             xhr.onload = function() {
                 var cols_mapping = {};
                 var data = JSON.parse(this.responseText);

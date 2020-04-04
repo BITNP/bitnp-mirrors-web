@@ -83,7 +83,7 @@ export default {
             var statusJSON = this.statusJson;
             var xhr = new XMLHttpRequest();
             var $this = this;
-            xhr.open('GET', statusJSON+'?refresh='+encodeURIComponent(+new Date()), true);
+            xhr.open('GET', statusJSON, true); // +'?refresh='+encodeURIComponent(+new Date())
             xhr.onload = function() {
                 var data = [];
                 try {
