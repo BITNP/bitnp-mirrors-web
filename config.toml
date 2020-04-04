@@ -1,12 +1,12 @@
 baseURL = "https://mirror.bit.edu.cn/"
 languageCode = "zh-CN"
-title = "Staging 理工大镜像服务"
+title = "北京理工大学 开源软件镜像服务"
 theme = "bitnp-mirror"
 disableKinds=["sitemap"]
 hasCJKLanguage = true
 
 [params]
-briefTitle = "Staging 北理工镜像"
+briefTitle = "北理工开源软件镜像"
 feedbackLink = "https://github.com/bitnp/issues/"
 newMirrorLink = "https://github.com/BITNP/issues/issues/new?labels=enhancement%2C+mirror.bitnp.net&template=-mirror-repo---------.md&title=[mirror%2Frepo]"
 gitLink = "https://github.com/bitnp/bitnp-mirrors-web/"
