@@ -150,7 +150,8 @@ export default {
 
       return (statusLabel[item.status] || item.status)
         .replace('%updaterel%',
-          )
+          this.timeSince(last_update, null, '前')
+        )
         .replace('%oldemoji%',
           (last_update && (new Date().getTime() - last_update.getTime()) > 3600000 * 24) ? '&#x1F570;&#xFE0F; ': ''
         );
