@@ -7,12 +7,21 @@
                     <rt class="text-muted px-3">HTTP 403 Forbidden</rt>
                     <rp class="text-muted">)</rp>
                 </ruby></h2>
-                <p>请接入校园网后访问该网址，或<a href="{{ relURL "/help/" }}">查阅对应镜像的帮助</a><br>
+                <p>请接入校园网后访问该网址，或<a href="{{ relURL "/help/" }}" class="help-link">查阅对应镜像的帮助</a><br>
                 如需反馈，请<a href="{{ $.Site.Params.feedbackLink }}">通过 GitHub 提交</a></p>
                 <p class="mt-5">
                     <a href="javascript:history.back()" class="btn btn-outline-primary mr-5">&#x2190; 返回前页</a>
-                    <a href="{{ relURL "/help/" }}" class="btn btn-outline-primary">查阅帮助 &#x2192;</a>
+                    <a href="{{ relURL "/help/" }}" class="btn btn-outline-primary help-link">查阅帮助 &#x2192;</a>
                 </p>
             </div>
         </div>
+        <script>
+            var pathname = location.pathname.split('/')[1];
+            if (pathname && pathname != 'help') {
+                var help_link = document.getElementsByClassName('help-link');
+                for (var i = 0; i < help_link.length; i++) {
+                    help_link[i].href = help_link[i].href.replace('/help/', '/help/'+pathname+'/');
+                }
+            }
+        </script>
 {{ end }}
