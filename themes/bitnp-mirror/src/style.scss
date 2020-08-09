@@ -224,3 +224,11 @@ aside h4, aside h4 a, aside h4 a:hover {
     border-bottom: 4px solid;
     margin-bottom: 0;
 }
+
+/* Index back to top link */
+.mirrors-title:hover .link-backtop, .mirrors-title:focus-within .link-backtop {
+    visibility: visible;
+}
+.link-backtop {
+    visibility: hidden;
+}
