@@ -1,5 +1,14 @@
 import './style.scss';
 
+window.isSupportedBrowser = function(){
+    var i = new Image();
+    return "localStorage" in window
+        && !!(Function.prototype&&Function.prototype.bind);
+        // "requestAnimationFrame" in window
+        // && "crossOrigin" in i
+        // && "matchMedia" in window
+};
+
 window.addEventListener('load', function(){
     if (document.querySelectorAll) {
         var elems = document.querySelectorAll('.mail-decoder');

@@ -18,9 +18,15 @@
             </ul>
             <h3 id="sync-status">&#x1F69A; 同步状态</h3>
             <div id="sync-status-app" data-status-json="{{ relURL $.Site.Params.statusJSON }}">
-                <div class="alert alert-info">
-                    正在加载…如果长时间无反应，请尝试打开 JavaScript。您也可以获取 <a href="{{ relURL $.Site.Params.statusJSON }}">JSON 格式的镜像状态</a>。
+                <div id="sync-status-loading" class="alert alert-info">
+                    正在加载…如果长时间无反应，请尝试打开 JavaScript。你也可以获取 <a href="{{ relURL $.Site.Params.statusJSON }}">JSON 格式的镜像状态</a>。
                 </div>
+                <div id="sync-status-unsupported" class="alert alert-warning" style="display: none;">
+                    你的浏览器不支持显示同步状态。请在这里获取 <a href="{{ relURL $.Site.Params.statusJSON }}">JSON 格式的镜像状态</a>。
+                </div>
+                <noscript>
+                    <style>#sync-status-loading{display:none;} #sync-status-unsupported{display:block;}</style>
+                </noscript>
             </div>
         </div>
 {{- end }}

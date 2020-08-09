@@ -1,4 +1,10 @@
 window.addEventListener('load', function(){
+    if (!isSupportedBrowser()) {
+        // hide filter box
+        document.getElementById('filter-list-group').style.display = 'none';
+        return;
+    }
+
     if (document.getElementsByTagName('main')[0].classList.contains('page-index')) {
         // press f to find like GitHub
         // Thanks to USTC
