@@ -3,7 +3,8 @@ import './style.scss';
 window.isSupportedBrowser = function(){
     var i = new Image();
     return "localStorage" in window
-        && !!(Function.prototype&&Function.prototype.bind);
+        && !!(Function.prototype&&Function.prototype.bind)
+        && !!(typeof Intl == 'object' && Intl && typeof Intl.NumberFormat == 'function');
         // "requestAnimationFrame" in window
         // && "crossOrigin" in i
         // && "matchMedia" in window

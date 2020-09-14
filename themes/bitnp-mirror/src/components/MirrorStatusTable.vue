@@ -1,8 +1,8 @@
 <template>
   <div class="table-responsive-lg">
     <table class="table table-sm table-hover">
-        <caption v-if="lastUpdatedError" class="text-danger">更新失败 {{ lastUpdatedError }} <time v-if="lastUpdatedText" v-bind:datetime="lastUpdated">（当前数据更新于本机时间 {{ lastUpdatedText }}）</time></caption>
-        <caption v-if="!lastUpdatedError && lastUpdated">更新于本机时间 <time v-bind:datetime="lastUpdated">{{ lastUpdatedText }}</time></caption>
+        <caption v-if="lastUpdatedError" class="text-danger">更新失败 {{ lastUpdatedError }} <time v-if="lastUpdatedText" v-bind:datetime="lastUpdated">（当前数据更新于北京时间 {{ lastUpdatedText }}）</time></caption>
+        <caption v-if="!lastUpdatedError && lastUpdated">更新于北京时间 <time v-bind:datetime="lastUpdated">{{ lastUpdatedText }}</time></caption>
         <thead>
           <tr class="text-nowrap" v-if="!filterRaw">
             <th>名称</th>
@@ -74,7 +74,7 @@
 </template>
 
 <script>
-var TLDList = ['edu.cn', 'com.cn', 'org', 'wide.ad.jp', 'ad.jp', 'edu', 'edu.au', 'com', 'co', 'io', 'net', 'at', 'de', 'nl', 'ca', 'ch', 'co.uk'];
+var publicSuffixList = ['edu.cn', 'com.cn', 'org', 'wide.ad.jp', 'ad.jp', 'edu', 'edu.au', 'com', 'co', 'io', 'net', 'at', 'de', 'nl', 'ca', 'ch', 'co.uk'];
 var statusLabel = {
     "none": "&#x23F8;&#xFE0F; 未同步",
     "failed": "&#x274C; 同步失败",
@@ -97,7 +97,7 @@ export default {
   },
   computed: {
     lastUpdatedText: function(){
-      return this.lastUpdated ? this.lastUpdated.toLocaleString(): null;
+      return this.lastUpdated ? this.$options.filters.dateLong(this.lastUpdated): null;
     },
     statusesFiltered: function(){
       var $this = this;
@@ -128,7 +128,7 @@ export default {
         } catch (error) {
           return u;
         }
-        var TLDmatch = TLDList.filter(function(v){
+        var TLDmatch = publicSuffixList.filter(function(v){
           return url.hostname.endsWith(v);
         });
         if (TLDmatch.length) {
@@ -162,20 +162,23 @@ export default {
     },
     dateShort: function(date){
       if (!date) return '';
-      var strings = [];
-      strings.push(date.getMonth()+1);
-      strings.push('-');
-      strings.push(date.getDate());
-      strings.push(' ');
-      strings.push(date.getHours());
-      strings.push(':');
-      strings.push(date.getMinutes());
-      for (var i in strings) {
-        if (i % 2 == 0) {
-          if(strings[i] < 10) strings[i] = '0'+strings[i];
-        }
-      }
-      return strings.join('');
+      return new Date(+date+480*60000)
+        .toLocaleString('zh-CN', {
+          timeZone: 'UTC',
+          hour12: false,
+          month: 'numeric',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric'
+        });
+    },
+    dateLong: function(date){
+      if (!date) return '';
+      return new Date(+date+480*60000)
+        .toLocaleString('zh-CN', {
+          timeZone: 'UTC',
+          hour12: false
+        });
     },
     timeSince: function(timeStamp, now, reltext, minus) {
       reltext = reltext || "";
