@@ -35,7 +35,7 @@ window.addEventListener('load', function(){
             if (keypressCounter >= 0){
                 keypressCounter++;
                 // threshold to trigger keyboard help
-                if (keypressCounter > 2) {
+                if (keypressCounter > 4) {
                     keypressCounter = -1;
                     if (!localStorage.keyboardHelpIndex) {
                         keyboardHelpDiv.classList.remove('d-none');
