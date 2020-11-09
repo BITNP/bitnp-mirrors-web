@@ -72,7 +72,7 @@ $primary: #D87319; /* NP */
 $body-color-dark: $body-bg;
 $body-bg-dark: $body-color;
 $light-dark: theme-color-level("dark", 0);
-$dark-dark: theme-color-level("light", 0);
+$dark-dark: theme-color-level("light", 2);
 
 body {
     min-height: 100%;
@@ -203,7 +203,10 @@ aside h4, aside h4 a, aside h4 a:hover {
     }
     .bg-dark {
         background-color: $dark-dark !important;
-        color: theme-color-level("dark", 0);
+        color: theme-color-level("dark", 3);
+    }
+    .bg-dark a {
+        color: theme-color-level("primary", 1);
     }
     .navbar-light .navbar-brand, .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
         color: rgba($white,0.9);
