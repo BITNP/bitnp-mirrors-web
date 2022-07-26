@@ -1,3 +1,4 @@
 node_modules
-static/static/*.js
-static/static/*.css
+static/static/*
+.sass-cache
+

@@ -213,9 +213,4 @@ export default {
 </script>
 
 <style scoped>
-@media (max-width: 991.98px){
-  .w-upstream {
-    max-width: 10rem;
-  }
-}
 </style>

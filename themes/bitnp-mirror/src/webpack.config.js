@@ -1,6 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
     mode: 'production',
@@ -21,11 +21,7 @@ module.exports = {
         rules: [
         {
             test: /\.css$/, // for Vue
-            loader: [
-                // MiniCssExtractPlugin.loader,
-                'vue-style-loader',
-                'css-loader',
-            ]
+            use: [MiniCssExtractPlugin.loader, "css-loader"],
         },
         {
             test: /\.(scss)$/,
@@ -35,13 +31,6 @@ module.exports = {
                 loader: 'css-loader', // translates CSS into CommonJS modules
                 }, {
                 loader: 'postcss-loader', // Run postcss actions
-                options: {
-                    plugins: function () { // postcss plugins, can be exported to postcss.config.js
-                    return [
-                        require('autoprefixer')
-                    ];
-                    }
-                }
                 }, {
                 loader: 'sass-loader' // compiles Sass to CSS
             }]
