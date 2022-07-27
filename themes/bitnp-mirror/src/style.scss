@@ -235,3 +235,8 @@ aside h4, aside h4 a, aside h4 a:hover {
 .link-backtop {
     visibility: hidden;
 }
+@media (max-width: 991.98px) {
+    .w-upstream {
+      max-width: 10rem;
+    }
+}
