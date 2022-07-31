@@ -42,10 +42,13 @@
                     </li>
                     {{- end -}}
                     {{ end }}
+                    {{ range .Site.Menus.secondary }}
                     <li class="nav-item flex-grow-1">
-                        <a class="nav-link d-inline-block float-right" href="//www.bitnp.net/">
-                            <span>网协主页</span>
+                        <a class="nav-link d-inline-block float-right" href="{{ .URL }}">
+                            {{ .Pre }}
+                            <span>{{ .Name }}</span>
                         </a>
                     </li>
+                    {{ end }}
 				</ul>
 			</div>

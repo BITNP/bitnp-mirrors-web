@@ -33,3 +33,10 @@ name = "服务状态"
 title = ""
 url = "/status/"
 weight = 20
+
+[[menu.secondary]]
+identifier = "bitnp-homepage"
+name = "网协主页"
+title = ""
+url = "https://www.bitnp.net/"
+weight = 10
