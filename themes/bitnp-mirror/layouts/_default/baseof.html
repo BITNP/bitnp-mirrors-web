@@ -3,7 +3,7 @@
 <html lang="{{ $.Site.LanguageCode }}" class="h-100">
 <head>
     <meta charset="utf-8">
-    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Params.briefTitle }}{{ end }}</title>
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Params.briefTitle }}{{ end }}</title>
     <meta name="description" content="{{ default "" .Summary }}">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +38,7 @@
                     {{- range first 3 (where .Site.RegularPages "Section" "news") }}
                         <li><a href="{{ .RelPermalink }}"><time datetime="{{ .Date.Format "2006-01-02T15:04:05-0700" }}" title="{{ .Date.Format "2006-01-02T15:04:05-0700" }}">{{ .Date.Format "01-02" }}</time> {{ .Title }}</a></li>
                     {{- else }}
-                        <li>暂无通知。</li>
+                        <li>暂无通知</li>
                     {{ end }}
                     </ul>
                     {{- block "sidebar-extra" . }}
