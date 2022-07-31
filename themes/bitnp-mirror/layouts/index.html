@@ -31,9 +31,9 @@
 {{- $RegularPages := index $.Site.Taxonomies.categories $cat.key }}
 {{- if len $RegularPages }}
 					<div id="{{ $cat.key }}">
-						<h4 class="mirrors-title py-2 mx-n2 px-2 sticky-top bg-body" style="display: flex; justify-content: space-between;">{{/* the style attribute makes sure it does not have important on it, and thus d-none works */}}
+						<h4 class="mirrors-title py-2 mx-n2 px-2 sticky-top bg-body">
 							<a href="#{{ $cat.key }}" class="text-body text-decoration-none">{{ $cat.name }} <small class="text-muted">#{{ $cat.key }}</small></a>
-							<a href="#top" class="text-body text-decoration-none pr-1 link-backtop" title="返回到页面顶部">&#x1F51D;</a>
+							<a href="#top" class="text-body text-decoration-none mr-1 link-backtop" title="返回到页面顶部">&#x1F51D;</a>
 						</h4>
 						<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
 {{- range $RegularPages }}
@@ -43,7 +43,7 @@
 										<h5 class="card-title col position-static pr-0">
 											<a href="{{ .Slug }}/" class="stretched-link">{{ .Title }}</a>
 											{{ if .Params.is_new }}<span class="badge badge-primary align-top">新</span>{{ end }}
-											<a class="badge badge-warning badge-sync-status raised-link-2 align-top d-none" href="{{ relURL "/status/" }}#{{ .Slug }}">同步异常</a>
+											<a class="badge badge-warning badge-sync-status raised-link-2 align-top d-none" href="{{ relURL "/status/" }}#{{ .Slug }}" title="更多同步状态信息">同步异常</a>
 										</h5>
 										{{ if .Params.help_available }}<div class="col-auto mt-n1"><a href="{{ .RelPermalink }}" class="btn btn-outline-info btn-sm raised-link-2"><span class="sr-only">{{ .Title }}</span> 帮助</a></div>{{ end }}
 									</div>

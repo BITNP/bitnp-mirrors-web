@@ -97,6 +97,7 @@ body {
 
 .navbar-nav {
     overflow-x: auto;
+    padding: 2px 2px 0 2px; /* Show Chrome focus-within outline */
     width: 100%;
     white-space: nowrap;
 }
@@ -226,6 +227,15 @@ aside h4, aside h4 a, aside h4 a:hover {
     color: rgba(theme-color("primary"), 0.9);
     border-bottom: 4px solid;
     margin-bottom: 0;
+}
+
+.mirrors-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+:target .mirrors-title {
+    background: theme-color-level("primary", -10);
 }
 
 /* Index back to top link */
