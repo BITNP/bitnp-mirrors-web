@@ -9,7 +9,7 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "bootstrap": "^4.6.1",
+    "bootstrap": "^5.0.0",
     "vue": "^2.7.0"
   },
   "devDependencies": {
