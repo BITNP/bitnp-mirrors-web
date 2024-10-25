@@ -10,7 +10,7 @@
   "license": "",
   "dependencies": {
     "bootstrap": "^5.0.0",
-    "vue": "^2.7.0"
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
